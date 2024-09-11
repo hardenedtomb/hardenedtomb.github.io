@@ -1,0 +1,14 @@
+name: Page
+on: workflow_dispatch:
+permissions:
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: yarn build && mv build _site
+      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/deploy-pages@v4
